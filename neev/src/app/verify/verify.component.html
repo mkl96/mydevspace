@@ -1,0 +1,21 @@
+<div class="formcontainer">
+  <div class="formbody">
+    <form style="width:100%;" [formGroup]="loginForm">
+      <div class="header">Verify</div>
+      <div>
+        <mat-form-field style="width:100%;">
+          <input type="password" formControlName="otp" matInput placeholder="Enter OTP">
+        </mat-form-field>
+        <span *ngIf="isValid('otp')">OTP cannot be blank</span>
+      </div>
+      <div style="margin-top:40px;">
+        <button class="form-btn" (click)="verify()">Verify</button>
+      </div>
+    </form>
+  </div>
+  <div>
+    <div style="width: 290px; padding: 20px;">
+      <button class="form-btn-hollow" (click)="movetoregister()">Register</button>
+    </div>
+  </div>
+</div>
