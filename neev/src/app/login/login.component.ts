@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { AbstractControl, FormGroup, FormControl, Validators } from '@angular/forms';
 import { MyserviceService } from '../service/service.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { AuthService } from '../service/auth.service'
+import { AuthService } from '../service/auth.service';
+import * as firebase from 'firebase';
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -23,6 +24,8 @@ export class LoginComponent implements OnInit {
   }
 
   ngOnInit() {
+    this._router.navigate(['/dash']);
+ 
   }
 
   isValid(controlName) {
@@ -30,7 +33,6 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
-    console.log(this.loginForm.value);
 
     if (this.loginForm.valid) {
       this._myservice.login(this.loginForm.value)
@@ -53,6 +55,10 @@ export class LoginComponent implements OnInit {
 
   movetoregister() {
     this._router.navigate(['../register'], { relativeTo: this._activatedRoute });
+  }
+
+  vendor() {
+    this._router.navigate(['../vendor/login'], { relativeTo: this._activatedRoute });
   }
   googlelogin() {
     this.authservice.login();

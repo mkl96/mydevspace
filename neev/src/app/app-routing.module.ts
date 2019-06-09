@@ -18,7 +18,9 @@ const routes: Routes = [{ path: '', redirectTo: 'main', pathMatch: 'full' },
         { path: 'login', component: LoginComponent },
         { path: 'forgotpassword', component: ForgotComponent },
         { path: 'verify', component: VerifyComponent },
-        { path: 'register', component: RegisterComponent }
+        { path: 'register', component: RegisterComponent },
+        { path: 'vendor', loadChildren: './vendor/vendor.module#VendorModule' },
+        { path: 'admin', loadChildren: './admin/admin.module#AdminModule' }
       ]
   },
   { path: 'dash', component: DashboardComponent, canActivate: [AuthGuardService] }];

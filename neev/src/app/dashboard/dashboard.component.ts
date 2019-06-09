@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MyserviceService } from '../service/service.service';
 import { Router } from '@angular/router';
-import { ReturnToken } from '../models/returnToken';
 import { AuthService } from 'npm/neev/src/app/service/auth.service';
 
 @Component({
@@ -10,15 +9,14 @@ import { AuthService } from 'npm/neev/src/app/service/auth.service';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent implements OnInit {
-
-  returnToken: ReturnToken;
+  
   username = '';
   constructor(private myService: MyserviceService, private auth: AuthService,
     private _router: Router) {
     this.myService.getUserName()
       .subscribe(
       data => {
-        console.log(data);
+        this.username = data.tokenuser[0].username;
       }
         //this.username = data.toString(),
           

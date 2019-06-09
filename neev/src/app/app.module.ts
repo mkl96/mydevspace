@@ -24,8 +24,6 @@ import { environment } from './../environments/environment';
 import { UserService } from 'npm/neev/src/app/service/user.service';
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,7 +32,7 @@ import { UserService } from 'npm/neev/src/app/service/user.service';
     DashboardComponent,
     MainDashboardComponent,
     ForgotComponent,
-    VerifyComponent
+    VerifyComponent,
   ],
   imports: [
     BrowserModule,

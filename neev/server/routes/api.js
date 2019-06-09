@@ -5,7 +5,10 @@ const User = require('../models/user');
 const myNum = require('../models/mynum');
 const jwt = require('jsonwebtoken');
 const nodemailer = require('nodemailer');
-const passport = require('passport');
+const SendOtp = require('sendotp');
+
+
+const sendOtp = new SendOtp('272480AQypykBbJ8C5cb4514e');
 
 var transporter = nodemailer.createTransport({
   service: 'gmail',
@@ -136,6 +139,11 @@ router.post('/contact', function (req, res, next) {
 
       promise1.then(function (doc) {
         console.log(mynum.otp);
+        /*
+        sendOtp.send(doc.contact, "NeerSeva", mynum.otp, function (error, data) {
+          console.log(data);
+        });
+       */
         return res.status(201).json(doc.contact);
       });
       promise1.catch(function (err) {
@@ -153,15 +161,15 @@ router.post('/contact', function (req, res, next) {
 
 
 router.post('/verify/:contact', function (req, res, next) {
-  console.log("g");
   console.log(contact = req.params.contact);
+  console.log(req.body.otp);
   let promise = User.findOne(
     {
-      phno: req.body.phno
+      contact: req.params.contact
     }).exec();
   promise.then(function (doc) {
     if (doc) {
-      console.log(doc);
+      console.log(doc+"gggggggg");
       let promise1 = myNum.findOne(
         {
           phno: req.body.phno,
@@ -197,10 +205,6 @@ router.post('/verify/:contact', function (req, res, next) {
   })
 })
 
-
-router.get('/auth/google', passport.authenticate('google', {
-  scope:['profile']
-}));
 
 
 module.exports = router;

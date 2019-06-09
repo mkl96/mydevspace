@@ -34,7 +34,7 @@ export class MyserviceService {
   }
 
   getUserName() {
-    return this._http.get('http://localhost:3000/api/username', {
+    return this._http.get<any>('http://localhost:3000/api/username', {
       observe: 'body',
       params: new HttpParams().append('token', localStorage.getItem('token'))
     });
